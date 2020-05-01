@@ -346,11 +346,11 @@
 				<cfif arrayLen(aTags) gt 0>
 					<tr valign="top">
 						<td><b>Tag Context:</b></td>
-						<td>
+						<td><ul>
 							<cfloop query="qryTagContext">
 								<li>#qryTagContext.template# [#qryTagContext.line#]</li>
 							</cfloop>
-						</td>
+						</ul></td>
 					</tr>
 				</cfif>
 				<tr>
