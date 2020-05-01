@@ -18,7 +18,7 @@
 		<!--- log how we got this report --->
 		<cfset arguments.source = "SOAP">
 
-		<!--- See if we this is a named instance of buglog --->
+		<!--- See if this is a named instance of buglog --->
 		<cfset var instance = getInstanceName()>
 
 		<cfset var listener = createObject("component","listener")
@@ -26,7 +26,6 @@
 									.logEntry(
 										argumentCollection = arguments
 									) />
-									
 		<cfreturn true>
 	</cffunction>
 

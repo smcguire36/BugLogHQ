@@ -1,4 +1,4 @@
-<!--- See if we this is a named instance of buglog --->
+<!--- See if this is a named instance of buglog --->
 <cfif structKeyExists(request,"bugLogInstance") and request.bugLogInstance neq "">
     <cfset instance = request.bugLogInstance>
 <cfelse>
@@ -23,7 +23,7 @@
     --->
     <cfcontent type="text/plain" reset="true" />
     <cfabort />
-    <cfelseif listFindNoCase("GET,POST", cgi.request_method)>
+<cfelseif listFindNoCase("GET,POST", cgi.request_method)>
     <!---
     Simple GET requests:
     When the request is GET or POST, and no custom headers are sent, then no preflight check is required.
