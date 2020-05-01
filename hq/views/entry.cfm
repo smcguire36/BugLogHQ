@@ -18,12 +18,12 @@
 <cfset htmlReport = oEntry.getHTMLReport()>
 <cfif oEntry.getMessage() eq "">
 	<cfset tmpMessage = "<em>No message</em>">
-<cfelse>		
+<cfelse>
 	<cfset tmpMessage = HtmlEditFormat(oEntry.getMessage())>
 </cfif>
 
 <cfset maxPreviewEntries = 10>
-							
+
 <cfquery name="qryEntriesOthers" dbtype="query">
 	SELECT *
 		FROM rs.qryEntriesAll
@@ -51,8 +51,9 @@
 
 <cfoutput>
 
-<!--- Page headers --->			
+<!--- Page headers --->
 <cfinclude template="../includes/menu.cfm">
+<cfinclude template="../includes/dump_scripts.cfm">
 
 <p style="margin-top:10px;">
 	<table width="100%" class="criteriaTable" cellpadding="0" cellspacing="0">
@@ -60,7 +61,7 @@
 			<td style="border-right:1px solid ##ccc;">
 				<img width="16" height="16" src="#rs.assetsPath#images/icons/email.png" align="absmiddle" />
 				<a href="##" id="sendToEmailLink">Send to email</a>
-				
+
 				<cfif isBoolean(jiraEnabled) and jiraEnabled>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<img width="16" height="16" src="#rs.assetsPath#images/icons/jira.png" align="absmiddle" />
@@ -162,7 +163,7 @@
 								<cfloop query="qryUAEntries" startrow="1" endrow="#min(maxPreviewEntries,qryUAEntries.recordCount)#">
 									<li>
 										<cfif qryUAEntries.entryID eq oEntry.getEntryID()><span class="label label-info">This</span> </cfif>
-										#showDateTime(qryUAEntries.createdOn,"m/d","hh:mm tt")#: 
+										#showDateTime(qryUAEntries.createdOn,"m/d","hh:mm tt")#:
 										<b>#qryUAEntries.applicationCode#</b> on
 										<b>#qryUAEntries.hostName#</b> :
 										<a href="index.cfm?event=entry&entryID=#qryUAEntries.entryID#">#htmlEditFormat(qryUAEntries.message)#</a></li>
@@ -204,14 +205,14 @@
 			<ul>
 			<cfif rs.qryEntriesLast24.recordCount gt 1>
 				<li>
-					<b>#rs.qryEntriesLast24.recordCount#</b> reports with the 
+					<b>#rs.qryEntriesLast24.recordCount#</b> reports with the
 					<a href="##" onclick="$('##last24hentries').slideToggle()" title="click to expand"><b>same message</b> <i class="icon-circle-arrow-down"></i></a>
 					have been reported in the last 24 hours.
 					<ul id="last24hentries" style="display:none;margin-top:5px;">
 						<cfloop query="rs.qryEntriesLast24" startrow="1" endrow="#min(maxPreviewEntries,rs.qryEntriesLast24.recordCount)#">
 							<li>
 								<cfif rs.qryEntriesLast24.entryID eq oEntry.getEntryID()><span class="label label-info">This</span> </cfif>
-								<a href="index.cfm?event=entry&entryID=#rs.qryEntriesLast24.entryID#">#showDateTime(rs.qryEntriesLast24.createdOn,"m/d","hh:mm tt")#</a> 
+								<a href="index.cfm?event=entry&entryID=#rs.qryEntriesLast24.entryID#">#showDateTime(rs.qryEntriesLast24.createdOn,"m/d","hh:mm tt")#</a>
 								 on
 								<b>#rs.qryEntriesLast24.hostName#</b>
 							</li>
@@ -228,9 +229,9 @@
 				<li style="margin-top:4px;">
 					<cfset firstOccurrence = rs.qryEntriesAll.createdOn[rs.qryEntriesAll.recordCount]>
 					<cfset firstOccurrenceID = rs.qryEntriesAll.entryID[rs.qryEntriesAll.recordCount]>
-					This bug has ocurred 
+					This bug has ocurred
 					<a href="##" onclick="$('##allentries').slideToggle()" title="click to expand"><b>#rs.qryEntriesAll.recordCount#</b> time<cfif rs.qryEntriesAll.recordCount gt 1>s</cfif> <i class="icon-circle-arrow-down"></i></a>
-					since 
+					since
 					<a href="index.cfm?event=entry&entryID=#firstOccurrenceID#"><b>#showDateTime(firstOccurrence)#</b></a>
 					<ul id="allentries" style="display:none;margin-top:5px;">
 						<cfloop query="rs.qryEntriesAll" startrow="1" endrow="#min(maxPreviewEntries,rs.qryEntriesAll.recordCount)#">
@@ -249,7 +250,7 @@
 			</cfif>
 			<cfif qryEntriesOthers.recordCount gt 0>
 				<li style="margin-top:4px;">
-					The previous time this bug was reported was on 
+					The previous time this bug was reported was on
 					<a href="index.cfm?event=entry&entryID=#qryEntriesOthers.entryID#"><b>#showDateTime(qryEntriesOthers.createdOn)#</b></a>
 				</li>
 			</cfif>
@@ -268,7 +269,7 @@
 					</table>
 				</div>
 			</cfif>
-		</div>	
+		</div>
 	</td>
 </tr>
 </table>
@@ -283,4 +284,4 @@
 <br>
 <p>
 	<a href="index.cfm"><strong>Return To Log</strong></a>
-</p>	
+</p>
