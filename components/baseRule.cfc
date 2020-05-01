@@ -41,6 +41,7 @@
 		<cfargument name="comment" type="string" required="false" default="">
 		<cfargument name="entryId" type="numeric" required="false" default="0">
 		<cfargument name="includeHTMLReport" type="boolean" required="false" default="true">
+		<cfargument name="includeStackTrace" type="boolean" required="false" default="false">
 
 		<cfscript>
 			var stEntry = {};
@@ -48,12 +49,22 @@
 			var sender = getListener().getConfig().getSetting("general.adminEmail");
 			var bugReportURL = "";
 			var body = "";
+			var match = {};
+			var stackTrace = "";
 
 			if(structKeyExists(arguments,"rawEntryBean")) {
 				stEntry = arguments.rawEntryBean.getMemento();
 			}
-			 
+
 			if(arguments.recipient eq "") {writeToCFLog("Missing 'recipient' email address. Cannot send alert email!"); return;}
+
+			// [SEM] - Extract the Stack Trace from the HTML Report
+			if (stEntry.HTMLReport neq "") {
+				match = REFindNoCase('<tr valign="top">\s*<td><b>Tag Context:</b></td>\s*<td>(.*?)</td>\s*</tr>', stEntry.HTMLReport, 1, true);
+				if (match.len[1] neq 0 and match.pos[1] neq 0) {
+					stackTrace = Mid(stEntry.HTMLReport, match.pos[2], match.len[2]);
+				}
+			}
 		</cfscript>
 
 		<!--- build contents of email --->
@@ -106,8 +117,16 @@
 						<td><b>Exception Detail:</b></td>
 						<td>#stEntry.exceptionDetails#</td>
 					</tr>
-				</table>			
-				
+				<cfif stackTrace neq "" and arguments.includeStackTrace>
+					<tr valign="top">
+						<td><b>Stack Trace:</b></td>
+						<td>
+							#stackTrace#
+						</td>
+					</tr>
+				</cfif>
+				</table>
+
 				<cfif stEntry.HTMLReport neq "" and arguments.includeHTMLReport>
 					<hr />
 					<b>HTML Report:</b><br />
@@ -117,13 +136,13 @@
 			</cfif>
 
 			<div style="font-family:arial;font-size:11px;margin-top:15px;">
-				** This email has been sent automatically from the BugLog server at 
+				** This email has been sent automatically from the BugLog server at
 				<a href="#buglogHref#">#buglogHref#</a><br />
 				<em>To disable automatic notifications log into the bugLog server and disable the corresponding rule.</em>
 			</div>
 			</cfoutput>
 		</cfsavecontent>
-		
+
 		<cfset mailerService.send(
 				from = sender, 
 				to = arguments.recipient,
