@@ -144,7 +144,7 @@
 				<cfloop collection="#arguments#" item="key">
 					<cfif structKeyExists(stColumns,key)>
 						<cfset tmpMessage = arguments[key]>
-						<cfset tmpMessage = replace(replace(tmpMessage,"[","[[]",'all'),"''","'")>
+						<cfset tmpMessage = replace(replace(tmpMessage,"[","[[]",'all'),"''","'", "all")>
 						<cfif stColumns[key].cfsqltype eq "cf_sql_varchar">
 							and #key# LIKE <cfqueryparam cfsqltype="#stColumns[key].cfsqltype#" value="#tmpMessage#">
 						<cfelse>
