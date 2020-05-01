@@ -83,11 +83,10 @@ CREATE TABLE [dbo].[bl_Entry] (
 		[CFTOKEN]              varchar(255) NULL,
 		[UserAgent]            varchar(500) NULL,
 		[TemplatePath]         varchar(500) NULL,
-		[HTMLReport]           text NULL,
+		[HTMLReport]           nvarchar(max) NULL,
 		[createdOn]            datetime NOT NULL
 )
 ON [PRIMARY]
-TEXTIMAGE_ON [PRIMARY]
 GO
 
 IF @@ERROR<>0 OR @@TRANCOUNT=0 BEGIN IF @@TRANCOUNT>0 ROLLBACK SET NOEXEC ON END
