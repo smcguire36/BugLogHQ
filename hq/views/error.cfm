@@ -28,6 +28,7 @@
                     <h2>Error!</h2>
                     <br />
                     <p>#htmlEditFormat(cfcatch.message)#</p>
+                    <p>#htmlEditFormat(cfcatch.detail)#</p>
                     <br />
                     <a href="##" onclick="history.go(-1)">Go Back</a>
                 </div>
