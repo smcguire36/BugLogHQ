@@ -44,7 +44,7 @@
 
 		<table  width="100%" class="well" cellpadding="0" cellspacing="0">
 			<tr align="center">
-				<td style="padding-top:5px;">
+				<td style="padding-top:5px;" width="25%">
 					Show for last:
 					<select name="numDays" style="width:100px;" class="searchSelector">
 						<cfloop array="#times#" index="item">
@@ -52,12 +52,12 @@
 						</cfloop>
 					</select>
 				</td>
-				<td style="padding-top:5px;">
+				<td style="padding-top:5px;" width="25%">
 					<span <cfif rs.criteria.searchTerm neq "">style="color:red;"</cfif>>Search:</span>
 					<input type="text" name="searchTerm" value="#rs.criteria.searchTerm#" class="searchSelector">
 
 				</td>
-				<td style="padding-top:5px;">
+				<td style="padding-top:5px;" width="25%">
 					<span <cfif rs.criteria.applicationID gt 0>style="color:red;"</cfif>>Application:</span>
 					<select name="applicationID" class="searchSelector">
 						<option value="0">All</option>
@@ -74,7 +74,7 @@
 						</cfif>
 					</select>
 				</td>
-				<td style="padding-top:5px;">
+				<td style="padding-top:5px;" width="25%">
 					<span <cfif rs.criteria.hostID gt 0>style="color:red;"</cfif>>Host:</span>
 					<select name="hostID"  class="searchSelector">
 						<option value="0">All</option>
