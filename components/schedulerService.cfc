@@ -28,14 +28,32 @@
 			}
 		</cfscript>
 
-		<cfschedule action="update"
-			task="#arguments.taskName#_#instanceName#"
-			operation="HTTPRequest"
-			startDate="#createDate(1990,1,1)#"
-			startTime="#arguments.startTime#"
-			url="#href#"
-			interval="#arguments.interval#"
-		/>		
+		<cfif server.coldfusion.productname eq "Lucee">
+			<!---
+			<cfschedule action="update"
+				task="#arguments.taskName#_#instanceName#"
+				operation="HTTPRequest"
+				startDate="#createDate(1990,1,1)#"
+				startTime="#arguments.startTime#"
+				url="#href#"
+				interval="#arguments.interval#"
+			/>
+			--->
+			<cfinclude template="./blk_scheduler_lucee.cfm">
+		<cfelse>
+			<!---
+			<cfschedule action="update"
+				task="#arguments.taskName#_#instanceName#"
+				operation="HTTPRequest"
+				mode="application"
+				startDate="#createDate(1990,1,1)#"
+				startTime="#arguments.startTime#"
+				url="#href#"
+				interval="#arguments.interval#"
+			/>
+			--->
+			<cfinclude template="./blk_scheduler_acf.cfm">
+		</cfif>
 	</cffunction>
 
 	<cffunction name="removeTask" access="public" returnType="void" hint="deletes a scheduled task">
