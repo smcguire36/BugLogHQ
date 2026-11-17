@@ -112,12 +112,20 @@
 		<div style="margin-bottom:10px;">
 			<span class="label label-important">DELETE BUG REPORT?</span>
 		</div>
-		<label><input type="radio" name="deleteScope" value="this" checked="true"> Delete this bug report only</label>
+		<div class="radio">
+			<label><input type="radio" name="deleteScope" value="this" checked="true"> Delete this bug report only</label>
+		</div>
 		<cfif qryHosts.RecordCount gt 1>
-			<label><input type="radio" name="deleteScope" value="app-host"> Delete all reports with the same message on this application on this host</label>
-			<label><input type="radio" name="deleteScope" value="app"> Delete all reports with the same message on this application on all hosts</label>
+			<div class="radio">
+				<label><input type="radio" name="deleteScope" value="app-host"> Delete all reports with the same message on this application on this host</label>
+			</div>
+			<div class="radio">
+				<label><input type="radio" name="deleteScope" value="app"> Delete all reports with the same message on this application on all hosts</label>
+			</div>
 		<cfelse>
-			<label><input type="radio" name="deleteScope" value="app"> Delete all reports with the same message on this application</label>
+			<div class="radio">
+				<label><input type="radio" name="deleteScope" value="app"> Delete all reports with the same message on this application</label>
+			</div>
 		</cfif>
 		<br>
 		<input type="submit" value="Delete" name="btnSubmit">

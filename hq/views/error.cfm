@@ -7,7 +7,7 @@
             <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
             <title>BugLogHQ Error!</title>
             <link rel="stylesheet" href="includes/bootstrap/css/bootstrap.min.css" type="text/css" />
-            <link rel="stylesheet" href="includes/bootstrap/css/bootstrap-responsive.min.css" type="text/css" />
+<!---            <link rel="stylesheet" href="includes/bootstrap/css/bootstrap-responsive.min.css" type="text/css" />  --->
             <link rel="stylesheet" href="includes/style.css" type="text/css">
         </head>
         <body>

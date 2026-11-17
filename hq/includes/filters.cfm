@@ -46,7 +46,7 @@
 			<tr align="center">
 				<td style="padding-top:5px;" width="25%">
 					Show for last:
-					<select name="numDays" style="width:100px;" class="searchSelector">
+					<select name="numDays" style="width:100px;" class="searchSelector form-control">
 						<cfloop array="#times#" index="item">
 							<option value="#item.value#" <cfif rs.criteria.numDays eq item.value>selected</cfif>>#item.label#</option>
 						</cfloop>
@@ -54,12 +54,12 @@
 				</td>
 				<td style="padding-top:5px;" width="25%">
 					<span <cfif rs.criteria.searchTerm neq "">style="color:red;"</cfif>>Search:</span>
-					<input type="text" name="searchTerm" value="#rs.criteria.searchTerm#" class="searchSelector">
+					<input type="text" name="searchTerm" value="#rs.criteria.searchTerm#" class="searchSelector form-control">
 
 				</td>
 				<td style="padding-top:5px;" width="25%">
 					<span <cfif rs.criteria.applicationID gt 0>style="color:red;"</cfif>>Application:</span>
-					<select name="applicationID" class="searchSelector">
+					<select name="applicationID" class="searchSelector form-control">
 						<option value="0">All</option>
 						<cfset found = false>
 						<cfloop query="qryApplicationsCurrent">
@@ -76,7 +76,7 @@
 				</td>
 				<td style="padding-top:5px;" width="25%">
 					<span <cfif rs.criteria.hostID gt 0>style="color:red;"</cfif>>Host:</span>
-					<select name="hostID"  class="searchSelector">
+					<select name="hostID"  class="searchSelector form-control">
 						<option value="0">All</option>
 						<cfset found = false>
 						<cfloop query="qryHostsCurrent">
@@ -95,7 +95,7 @@
 			<tr>
 				<td>&nbsp;</td>
 				<td style="text-align:center;">
-					<label style="font-size:11px;">
+					<label style="font-size:11px;" class="checkbox-inline">
 						<input type="checkbox"
 								name="searchHTMLReport"
 								value="true"
@@ -118,7 +118,7 @@
 					<span <cfif rs.criteria.severityID neq "_ALL_">style="color:red;"</cfif>>Severity:</span> &nbsp;&nbsp;
 					<cfloop query="rs.qrySeverities">
 						<cfset tmpImgURL = getSeverityIconURL(lcase(rs.qrySeverities.name))>
-						<label class="inline">
+						<label class="checkbox-inline">
 							<input type="checkbox"
 									class="searchSeverityCheckbox"
 									name="severityID"
@@ -128,7 +128,7 @@
 								<img src="#tmpImgURL#"
 										alt="#lcase(rs.qrySeverities.name)#"
 										title="#lcase(rs.qrySeverities.name)#">
-							 #lcase(rs.qrySeverities.name)#
+							#lcase(rs.qrySeverities.name)#
 						</label>
 						&nbsp;&nbsp;&nbsp;
 					</cfloop>

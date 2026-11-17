@@ -21,10 +21,10 @@
 			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 			<title>#htmlTitle#</title>
 			<link rel="stylesheet" href="#rs.assetsPath#/includes/bootstrap/css/bootstrap.min.css" type="text/css" />
-			<link rel="stylesheet" href="#rs.assetsPath#/includes/bootstrap/css/bootstrap-responsive.min.css" type="text/css" />
+<!---			<link rel="stylesheet" href="#rs.assetsPath#/includes/bootstrap/css/bootstrap-responsive.min.css" type="text/css" />  --->
 			<link rel="stylesheet" href="#rs.assetsPath#/includes/style.css" type="text/css">
 			<link rel="shortcut icon" href="#rs.assetsPath#../favicon.ico">
-			<script type="text/javascript" src="#rs.assetsPath#/includes/jquery-1.8.0.min.js"></script>
+			<script type="text/javascript" src="#rs.assetsPath#/includes/jquery-3.6.4.min.js"></script>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		</head>
 		<body>

@@ -293,7 +293,6 @@
 				// set values
 				setValue("ruleTypes", getService("app").getRules());
 				setValue("jiraEnabled", getService("jira").getSetting("enabled"));
-				setValue("oEntry", oEntry);
 				setValue("qryEntriesLast24", qryEntriesLast24);
 				setValue("qryEntriesAll", qryEntriesAll);
 				setValue("qryEntriesUA", qryEntriesUA);
@@ -430,7 +429,7 @@
 		</cfscript>
 	</cffunction>
 
-	<cffunction name="doLogin" access="public" returnType="void">
+	<cffunction name="doLogin" access="public" returnType="void" output="true">
 		<cfscript>
 			var username = "";
 			var password = "";
@@ -450,7 +449,6 @@
 				if(userID eq 0) throw(type="validation", message="Invalid username/password combination");
 				session.userID = abs(userID);
 				session.user = getService("app").getUserByID(abs(userID));
-
 				if(userID lt 0) {
 					session.requirePasswordChange = true;
 					setMessage("warning","Please update your password");
